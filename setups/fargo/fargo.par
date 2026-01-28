@@ -20,7 +20,7 @@ TauDamp 0.3
 
 ### Planet parameters
 
-PlanetConfig		planets/jupiter.cfg
+PlanetConfig		planets/MobileJupiter.cfg
 ThicknessSmoothing 	0.6
 RocheSmoothing 		0.0
 Eccentricity		0.0
@@ -44,7 +44,7 @@ DT			0.314159265359	Physical time between fine-grain outputs
 Ninterm	 		20		Number of DTs between scalar fields outputs
 Ntot			1000		Total number of DTs
 
-OutputDir		@outputs/fargo
+OutputDir		@outputs/fargo_mig
 
 ### Plotting parameters
 
