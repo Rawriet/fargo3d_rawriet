@@ -5,6 +5,9 @@ set -euo pipefail
 ROOT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")/.." && pwd)"
 cd "$ROOT_DIR"
 
+# Ensure output directory exists for the linker.
+mkdir -p "$ROOT_DIR/bin"
+
 # Pre-generate bound_code files from the canonical scripts dir to avoid
 # path issues in fresh clones (bound_code.py writes to ../scripts/*).
 SETUP="${SETUP:-fargo}"
