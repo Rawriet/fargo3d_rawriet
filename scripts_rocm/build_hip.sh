@@ -13,7 +13,7 @@ NFLUIDS="${NFLUIDS:-1}"
     ln -s c2hip_rocm.py "$ROOT_DIR/scripts/c2hip.py"
   fi )
 ( cd "$ROOT_DIR/scripts" && python3 bound_code.py "$SETUP" "$NFLUIDS" )
-( cd "$ROOT_DIR/scripts" && python3 collisions_gpu.py )
+( cd "$ROOT_DIR/scripts" && python3 collisions_gpu.py "$NFLUIDS" )
 
 make -f src/makefile.hip allp SETUP=fargo PARALLEL=0 GPU=1 \
   SCRIPTSDIR=./scripts SETUPSDIR=./setups STDDIR=./std SRCDIR=./src ARCHDIR=./arch BINDIR=./bin \
