@@ -9,6 +9,9 @@ cd "$ROOT_DIR"
 # path issues in fresh clones (bound_code.py writes to ../scripts/*).
 SETUP="${SETUP:-fargo}"
 NFLUIDS="${NFLUIDS:-1}"
+( if [[ ! -e "$ROOT_DIR/scripts/c2hip.py" && -e "$ROOT_DIR/scripts/c2hip_rocm.py" ]]; then
+    ln -s c2hip_rocm.py "$ROOT_DIR/scripts/c2hip.py"
+  fi )
 ( cd "$ROOT_DIR/scripts" && python3 bound_code.py "$SETUP" "$NFLUIDS" )
 
 make -f src/makefile.hip allp SETUP=fargo PARALLEL=0 GPU=1 \
