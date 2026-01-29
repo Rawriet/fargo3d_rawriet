@@ -5,6 +5,12 @@ set -euo pipefail
 ROOT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")/.." && pwd)"
 cd "$ROOT_DIR"
 
+# Pre-generate bound_code files from the canonical scripts dir to avoid
+# path issues in fresh clones (bound_code.py writes to ../scripts/*).
+SETUP="${SETUP:-fargo}"
+NFLUIDS="${NFLUIDS:-1}"
+( cd "$ROOT_DIR/scripts" && python3 bound_code.py "$SETUP" "$NFLUIDS" )
+
 make -f src/makefile.hip allp SETUP=fargo PARALLEL=0 GPU=1 \
   SCRIPTSDIR=./scripts SETUPSDIR=./setups STDDIR=./std SRCDIR=./src ARCHDIR=./arch BINDIR=./bin \
   EXENAME=./bin/fargo3d_hip LINKER='gcc -no-pie' \
